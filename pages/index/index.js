@@ -5,7 +5,6 @@
 var myDate = new Date();
 var month = myDate.getMonth();
 var year = myDate.getFullYear();
-var day = myDate.getDate();
 
 var dayOfMonth = [
     [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31],
@@ -20,9 +19,8 @@ var isLeapYear = (year)=> {
 };
 
 var get_day = (year, month)=> {
-    return dayOfMonth[isLeapYear(year)][month - 1];
+    return dayOfMonth[isLeapYear(year)][month];
 };
-
 
 Page({
     data: {
@@ -31,6 +29,7 @@ Page({
         day: get_day(year, month),
         date: '2016年10月'
     },
+
     switchMonth (e) {
         switch (+e.target.dataset.type) {
             case 0 :    //左切
@@ -50,15 +49,33 @@ Page({
                 }
                 break;
         }
+        this.switchDate(year,month + 1);
+    },
 
+    //切换年月
+    switchDate (y,m) {
 
+        //重置年月
+        year = y;
+        month = m - 1;
         this.setData({
             day : get_day(year, month),
             date : year + "年" + (month + 1) + "月",
             monthStart: (new Date(year, month, 1)).getDay()
         });
+
     },
+
     onLoad () {
+
+
+
+    },
+
+    onReady() {
+
+        //切换年份
+        this.switchDate(2017,4);
 
     }
 });

@@ -14,7 +14,7 @@
       <view class="calendar__cols" wx:for="1234567" wx:for-index="col">
         <view class="calendar__item" data-index="">
           {{
-          row * 7 - monthStart + col >-1 && row * 7 - monthStart + col <= day ? row * 7 + col - monthStart + 1 : ''
+          row * 7 - monthStart + col >-1 && row * 7 - monthStart + col < day ? row * 7 + col - monthStart + 1 : ''
           }}
         </view>
       </view>
