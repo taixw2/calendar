@@ -81,6 +81,12 @@ Page({
 
     },
 
+    clickItem (e) { 
+        var day = e.target.dataset.day;
+
+        console.log(year + '年'+(month+1)+'月' + day+"日");
+
+    },
     onLoad () {
 
 
